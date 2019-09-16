@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +31,39 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// created array for string and split every time you see the space 
+		//	
+		String[] word = phrase.split(" ");
+		// create space called abbrev to return an answer ['king-kong', the, great]
+		String abbrev = "";
+		
+		// for loop in order to opertate the main work 
+		//		int x=0: starts from 0 which is 1st string of word array 
+		//      x < word.length: x until when it reaches its word length 
+		//      x++: add 1 to int in order to go to next word 
+		for(int x=0; x < word.length; x++) { 
+		 
+			//check if the words/string contains an hyphen
+			if(word[x].contains("-")){
+				//if it does split the word at the hyphen eg king-kong the great
+				//save the first word before the hyphen
+				abbrev += word[x].charAt(0);
+				//then take the character after the hyphen
+				
+				int index =(word[x].indexOf("-"))+1;
+				
+				//adds the letter after hyphen
+				abbrev += word[x].charAt(index);
+					
+			} else 
+				// abbreve +=: add every result of this for loop to abbrev we created
+				// word [x].charAt(0): prints out the first character of string X 
+				abbrev += word[x].charAt(0);
+		}
+		//Return Value with abbrev  
+		return abbrev;
 	}
+
 
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -84,17 +115,37 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			if(sideOne == sideTwo && sideTwo == sideThree) 
+				return true;
+			else 
 			return false;
+//			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+		
+			if(sideOne == sideTwo || sideTwo == sideThree ||sideThree == sideOne ) 
+				return true;
+			
+	
+//				else if(sideTwo == sideThree) 
+//					outp=true;
+//	
+//				else if(sideThree == sideOne) 
+//					outp=true;;
+//			    
+//				else  System.out.println("This is not an isoceles");
+//
+//			return isIsosceles();
+			else
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			
+			if(sideOne!=sideTwo && sideTwo!=sideThree && sideThree!=sideOne)
+				return true;
+			else
 			return false;
 		}
 
@@ -116,8 +167,52 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		char[] onePoint = {'A','E','I','O','U','L','N','R','S','T'};
+		char[] twoPoint = {'D','G'};
+		char[] threePoint = {'B','C','M','P'};
+		char[] fourPoint = {'F','H','V','W','Y'};
+		char[] fivePoint = {'K'};
+		char[] eightPoint = {'J','X'};
+		char[] tenPoint = {'Q','Z'};
+		
+		char[] stringToArray = string.toUpperCase().toCharArray();
+		int totalScore = 0;
+	
+		for(int x=0; x < stringToArray.length; x++ ) {
+			
+			
+		if ( gettingPoint(onePoint,stringToArray[x]) == true) {
+				totalScore += 1;
+		} else if ( gettingPoint(twoPoint,stringToArray[x]) == true) {
+				totalScore +=2;
+		}else if ( gettingPoint(threePoint,stringToArray[x]) == true) {
+				totalScore +=3;
+		}else if ( gettingPoint(fourPoint,stringToArray[x]) == true) {
+				totalScore +=4;
+		}else if ( gettingPoint(fivePoint,stringToArray[x]) == true) {
+				totalScore +=5;
+		}else if ( gettingPoint(eightPoint,stringToArray[x]) == true) {
+				totalScore +=8;
+		}else if ( gettingPoint(tenPoint,stringToArray[x]) == true) {
+				totalScore +=10;
+		} else; 
+			
+		}
+		
+		return totalScore;
+	}
+	
+	private boolean gettingPoint(char[] cA, char c) {
+		boolean out=false;
+		for(char a:cA) {
+			if (a == c) {
+				out = true;
+				break;
+			} else out = false;
+		}
+		
+		return out;
 	}
 
 	/**
@@ -152,8 +247,24 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		String cleanNumba =string.replaceAll("\\s", "");
+		char[] replcVal="[()+.-?@]".toCharArray();
+		
+		for(char x: replcVal) {
+			cleanNumba =cleanNumba.replaceAll("\\"+String.valueOf(x), "");			  
+		}	
+		
+		//char[] validNumba =cleanNumba.toCharArray();
+		String invalid = "This is not a correct format";
+		System.out.println(cleanNumba);
+		
+		if (cleanNumba.length() == 10 ) {
+			System.out.println(cleanNumba);
+			return cleanNumba;}
+			else  
+				throw new IllegalArgumentException(invalid);
+		
 	}
 
 	/**
