@@ -1,9 +1,14 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.Arrays;
+//import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
 
@@ -257,11 +262,11 @@ public class EvaluationService {
 		
 		//char[] validNumba =cleanNumba.toCharArray();
 		String invalid = "This is not a correct format";
-		System.out.println(cleanNumba);
+		
 		
 		if (cleanNumba.length() == 10 ) {
-			System.out.println(cleanNumba);
-			return cleanNumba;}
+			return cleanNumba;
+			}
 			else  
 				throw new IllegalArgumentException(invalid);
 		
@@ -277,8 +282,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// split string when finds non-word
+		String [] seperate = string.split("\\W+"); 
+		
+		Map<String, Integer> countMap = new HashMap<String, Integer>();		
+		for(int i=0; i<seperate.length; i++) {
+			if(countMap.containsKey(seperate[i])){
+			
+				int count = countMap.get(seperate[i]);
+				countMap.put(seperate[i], count + 1);
+			} else {
+				countMap.put(seperate[i], 1);
+			}
+		}
+		return countMap;
 	}
 
 	/**
@@ -320,7 +337,8 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+//			sortedList.indexOf(t);
+//			return sortedList.indexOf(t);
 			return 0;
 		}
 
@@ -357,9 +375,121 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
 		return null;
 	}
+		
+	
+// 11111111111111111111111111111111111111111111111111111111111111111111111	
+//		String end ="";
+//		String [] words = string.split(" ");
+//		for(int i =0; i < words.length; i++)
+//			if (isVowel(words[i].toLowerCase().charAt(0))) {
+//				end += words[i] + "ay";
+//			}else {
+//				end += words[i].substring(1) + words[i].substring(0,1) + "ay";
+//				word[i] = end;
+//			}
+//		System.out.println(end);
+//		return end;
+//				
+//			}
+//		
+//	22222222222222222222222222222222222222222222222222222222222222222222
+//	 boolean isVowel(char c) {
+//		if (c == 'a' ||c == 'e' || c == 'i' || c == 'o' || c == 'u')
+//			return true;
+//			return false;
+//	}
+
+//		String vowel = "aeiou";
+//		String nonVowel = "bcdfghjklmnpqrstvwxyz";
+//		char[] stringArray = string.toCharArray();
+//		int l = string.length();
+//		String pigLatin = "";
+//		
+//		for(int i =0; i <l; i++) {
+//		
+//		String front,back;
+//			
+//		if(vowel.contains(Character.toString(stringArray[i] ))) {
+//			pigLatin = string + "ay";
+//		  	break;
+//		  }
+//		  else if(nonVowel.contains(Character.toString(stringArray[i]))){
+//				front = string.substring(i+1);
+//		  		back = string.substring(0,i+1);
+//		  		pigLatin += front + back + "ay";
+//		  		System.out.println(pigLatin);
+//		  	}  
+//		}
+//	
+////		System.out.println(pigLatin);
+//		return pigLatin;
+//	}
+	
+		
+//33333333333333333333333333333333333333333333333333333333333333333333333		
+//		String vowel = "aeiou";
+//		String nonVowel = "bcdfghjklmnpqrstvwxyz";
+//		String [] multiWords = string.split(" ");
+//		
+//		for (int x=0; x<multiWords.length; x++) {
+//			int leng = multiWords[x].length();
+//			char [] eachLetters = multiWords[x].toCharArray();
+//			
+//			
+//			for (int y=0; y <leng; y++ ) {
+//				String front,back;
+//				String output = "";
+//				if(vowel.contains(Character.toString(eachLetters[y]))) {
+//				if(y==0) {
+//						output = multiWords[x] + "ay";
+//						System.out.println(output);
+//						break;
+//					}
+//				}
+//				else if (nonVowel.contains(Character.toString(eachLetters[y]))) {
+//					front = multiWords[x].substring(y+1);
+//					back = multiWords[x].substring(0,y+1);
+//					output = front + back + "ay";
+//					multiWords[x] = output;
+//				}
+//			}
+//		}
+//	
+//	44444444444444444444444444444444444444444444444444444444444444444444444444444
+//		System.out.println(String.join(" ",multiWords));
+//		return String.join(" ",multiWords);
+//}
+	
+		
+//		String vowel = "aeiou";
+//		String nonVowel = "bcdfghjklmnpqrstvwxyz";
+//		int leng = string.length();
+//		char [] eachLetters = string.toCharArray();
+//		String output ="";
+//		String back = "";
+//			
+//			for (int y=0; y < leng; y++ ) {
+//				
+//				if(vowel.contains(Character.toString(eachLetters[y])) && y == 0) {
+//						output += string + "ay";
+//						break;
+//				} 
+//				else  {
+//					
+//					string = string.substring(y);
+//					back += eachLetters[y];
+//					output = string + back + "ay";
+//					}
+//				}
+//			
+//						
+//			System.out.println(output);
+//     		return output;
+//	}
+
+
 
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
@@ -377,8 +507,28 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		
+		String numb = Integer.toString(input); // converting int to String
+		String [] eachNum = numb.split("");  // converting string to Array
+		int lenI = numb.length();  // length of input
+		double save = 0; // place holder for each i^length 
+		int answer = 0; // place holder for the answer
+		
+		for(int i=0; i<lenI; i++) {
+		
+			int inputAgain = Integer.parseInt(eachNum[i]);
+			save = Math.pow(inputAgain, lenI);
+			answer += save;
+			
+//			System.out.println(answer);
+		}
+		
+		
+		if(input == answer) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -392,10 +542,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		List<Long> answer = new ArrayList<Long>(); // place holder as a list for answers 
+		
+		for(Long i=(long)2; i<=l; i++) {
+			while(l%i == 0) { // for loop until l%i == 0
+				answer.add(i); 
+				l /= i;	// samething as l = l/i		
+			}
+		}
+		return answer;
 	}
-
+//		Reference: https://www.tutorialspoint.com/Prime-factors-in-java
 	/**
 	 * 11. Create an implementation of the rotational cipher, also sometimes called
 	 * the Caesar cipher.
@@ -431,11 +589,41 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
-		}
+			String smAlphabet = "abcdefghijklmnopqrstuvwxyz";
+			String cpAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//			char [] conversionToChar = smallCase.toCharArray();
+			String answer = "";
+			
+			for(int i=0; i < string.length(); i++) {
+			boolean checkAlphabet = Character.isAlphabetic(string.charAt(i));
+			boolean checkUppercase = Character.isUpperCase(string.charAt(i));
 
-	}
+						
+				if(checkAlphabet == true && checkUppercase == true) {
+				int position = cpAlphabet.indexOf(string.charAt(i));
+				int rotation = (position + key)%26; 
+				char roatatedAlphaA = cpAlphabet.charAt(rotation);
+				answer += roatatedAlphaA;
+				
+			
+				}else if(checkAlphabet == true) {
+					int position = smAlphabet.indexOf(string.charAt(i));
+					int rotation = (position + key)%26; 
+					char roatatedAlphaB = smAlphabet.charAt(rotation);
+					answer += roatatedAlphaB;
+				}
+					else {
+					answer += string.charAt(i);
+				}
+				
+			}
+//			System.out.println(answer);
+			return answer;
+			}
+		}
+	//reference: https://coderanch.com/t/662453/java/understand-caesar-cipher-java-code
+	
+	
 
 	/**
 	 * 12. Given a number n, determine what the nth prime is.
@@ -450,7 +638,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
+		 
 		return 0;
 	}
 
@@ -487,9 +675,43 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String alpha = "abcdefghijklmnopqrstuvwxyz";
+			String atbash = "zyxwvutsrqponmlkjihgfedcba";
+			String smallCase = string.toLowerCase();
+			String conversion = "";
+			String encode = "";
+			
+			for(int i=0; i<smallCase.length(); i++) {
+				boolean checkAlphabet = Character.isAlphabetic(smallCase.charAt(i));
+				boolean checkNumeric = Character.isDigit(smallCase.charAt(i));
+				
+				if (checkAlphabet == true ) {
+					int position = alpha.indexOf(smallCase.charAt(i));
+					int after = atbash.indexOf(atbash.charAt(position)); 
+					char done = atbash.charAt(after);
+					conversion += done;
+					} else if (checkNumeric == true) {
+						conversion += string.charAt(i);
+					}
+			}
+			
+			for(int j=0; j<conversion.length(); j+=5) {
+				
+				if (conversion.length() <=5) // for less than 5 characters
+					encode += conversion;
+				else if (j%5 ==0 && j+5 <= conversion.length()) { // when it occurs 5th one AND j doesn't go out of bound( goes to else when j go out of bound) 
+					encode += (conversion.substring(j, j+5) + " ");
+					
+				}else { // prints out the rest 
+					 encode += conversion.substring(j);
+				}
 		}
+			
+		
+			return encode;
+		}
+		
+		// Referecne : https://exercism.io/tracks/java/exercises/atbash-cipher/solutions/ce7f9a7a88124b8298c1de831037f051
 
 		/**
 		 * Question 14
@@ -498,8 +720,29 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String alpha = "abcdefghijklmnopqrstuvwxyz";
+			String atbash = "zyxwvutsrqponmlkjihgfedcba";
+			String smallCase = string.toLowerCase();
+			String decode = "";
+			
+			for (int i =0; i < smallCase.length(); i++) {
+			
+			boolean alphaCheck = Character.isAlphabetic(smallCase.charAt(i));
+			boolean numberCheck = Character.isDigit(smallCase.charAt(i));
+			
+			if (alphaCheck == true ) {
+				int position = atbash.indexOf(smallCase.charAt(i));
+				int after = alpha.indexOf(alpha.charAt(position)); 
+				char done = alpha.charAt(after);
+				decode += done;
+				} else if (numberCheck == true) {
+					decode += smallCase.charAt(i);
+				}
+			
+			}
+			
+			
+			return decode;
 		}
 	}
 
@@ -526,9 +769,34 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		string = string.replace("-", "");
+		ArrayList<Integer> numbs = new ArrayList<Integer>();
+		int l = string.length();
+		int counter = 0;
+		int answer = 0;
+
+		for(int i=0; i<l; i++, l--) {
+		if	(string.charAt(string.length()-1) == 'X') {
+			string.replace(string.charAt(string.length()-1), 'X');
+		}
+		else if (Character.isLetter(string.charAt(i)))
+			continue;
+		else {
+			counter = string.charAt(i) * l;
+			numbs.add(counter);
+		}
 	}
+		for(int k=0; k < numbs.size(); k++) {
+			answer += numbs.get(k);
+		}
+		
+		if(answer%11 == 0) 
+			return true;
+		else
+			return false;
+			
+	}
+
 
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
@@ -544,8 +812,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		HashSet <Character> noDup = new HashSet<Character>();
+		string = string.replace(" ","");
+			
+			for (int i=0; i<string.length(); i++) {
+				noDup.add(string.charAt(i));
+			}
+			if (noDup.size()==26)
+				return true;
+			else	
+				return false;
 	}
 
 	/**
